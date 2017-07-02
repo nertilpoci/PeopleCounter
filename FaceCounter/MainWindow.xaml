@@ -1,0 +1,70 @@
+﻿<extra:Window x:Class="FaceCounter.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:extra="http://schemas.extra.com/ui"
+              xmlns:metro="http://schemas.codeplex.com/elysium"
+              xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:local="clr-namespace:FaceCounter"
+           
+              Height="300"
+             
+              Title="Face Counter"
+              Width="500"
+              WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}"/>
+    </Window.DataContext>
+    <extra:Window.Resources>
+
+
+        <local:ReverseBoolToVisibilityConverter x:Key="ReverseBoolToVisibilityConverter"/>
+
+
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+
+    </extra:Window.Resources>
+
+
+
+
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/Background2.jpg" Opacity="0.1"/>
+        </Grid.Background>
+       
+       <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition ></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock FontSize="20" HorizontalAlignment="Right">In</TextBlock>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" FontSize="20" Text="{Binding In}" ></TextBlock>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Right" FontSize="20" >Out</TextBlock>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Center" FontSize="20" Text="{Binding Out}" ></TextBlock>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Right" FontSize="20">In Camera</TextBlock>
+        <ComboBox Grid.Row="1" HorizontalAlignment="Stretch" Grid.Column="1"  ItemsSource="{Binding AvailableCameras}" 
+                	      SelectedItem="{Binding InCamera, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}"/>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Right" FontSize="20" Grid.Column="2">Out Camera</TextBlock>
+        <ComboBox Grid.Row="1" HorizontalAlignment="Stretch" Grid.Column="3"  ItemsSource="{Binding AvailableCameras}" 
+                	      SelectedItem="{Binding OutCamera, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding StartCountingCommand}" Visibility="{Binding IsCounting, Converter={StaticResource ReverseBoolToVisibilityConverter}, Mode=OneWay}">Start Counting</Button>
+        <Button Grid.Row="2"  Grid.ColumnSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Command="{Binding StopCountingCommand}" Visibility="{Binding IsCounting, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">Stop Counting</Button>
+
+    </Grid>
+      
+
+      
+        
+
+
+
+
+
+</extra:Window>
