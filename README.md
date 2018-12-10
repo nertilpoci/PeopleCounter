@@ -4,7 +4,7 @@ Count people using EmguCV(OpenCV) and cameras by face detection and recognition
 # Idea
 Count poeple via face recognition using multiple cameras to detect people when they enter or leave a specific zone
 
-![alt text](https://s24.postimg.org/4vl7m5clh/Untitled.png "")
+![alt text](https://s24.postimg.cc/4vl7m5clh/Untitled.png "")
 
 
 Use two or more cameras to detect people entering and leaving from a building.
