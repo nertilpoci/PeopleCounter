@@ -1,0 +1,97 @@
+﻿<Controls:MetroWindow x:Class="FaceCounter.MainWindow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:metro="http://schemas.codeplex.com/elysium"
+              xmlns:params="http://schemas.codeplex.com/elysium/params"
+             xmlns:local="clr-namespace:FaceCounter"
+           xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 
+              Title="Face Counter Emgu CV"
+              Width="700" Height="600"
+              WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}"/>
+    </Window.DataContext>
+    <Controls:MetroWindow.Resources>
+
+
+        <local:ReverseBoolToVisibilityConverter x:Key="ReverseBoolToVisibilityConverter"/>
+
+
+        <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+
+
+    </Controls:MetroWindow.Resources>
+
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button  Name="info" Content="Info" Click="Info_Click" />
+            
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+    <StackPanel>
+
+        <GroupBox Header="Cameras">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20">In Camera</TextBlock>
+                <ComboBox  HorizontalAlignment="Stretch" Grid.Column="1"  VerticalAlignment="Center"  ItemsSource="{Binding AvailableCameras}" 
+                	      SelectedItem="{Binding InCamera, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}"/>
+                <TextBlock  VerticalAlignment="Center"  HorizontalAlignment="Center" FontSize="20" Grid.Column="2">Out Camera</TextBlock>
+                <ComboBox  VerticalAlignment="Center"  HorizontalAlignment="Stretch" Grid.Column="3"  ItemsSource="{Binding AvailableCameras}" 
+                	      SelectedItem="{Binding OutCamera, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnNotifyDataErrors=True}"/>
+            </Grid>
+
+        </GroupBox>
+
+        <GroupBox Header="Stats (Not unique)">
+            
+
+            <Grid >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="70"></RowDefinition>
+                    <RowDefinition ></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="50"  HorizontalAlignment="Center" >In</TextBlock>
+                <TextBlock  Grid.Row="1"  HorizontalAlignment="Center" FontSize="200" Text="{Binding In}" ></TextBlock>
+                <Image Source="logo.png" Grid.Row="1" Grid.Column="1" Opacity="0.2"></Image>
+                <TextBlock Grid.Column="2"   HorizontalAlignment="Center" FontSize="50" >Out</TextBlock>
+                <TextBlock Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Center" FontSize="200" Text="{Binding Out}" ></TextBlock>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox >
+
+            <Grid>
+                <Button HorizontalAlignment="Center" FontSize="30" Command="{Binding StartCountingCommand}" Visibility="{Binding IsCounting, Converter={StaticResource ReverseBoolToVisibilityConverter}, Mode=OneWay}">Start Counting</Button>
+                <Button  HorizontalAlignment="Center"  FontSize="30"  Command="{Binding StopCountingCommand}" Visibility="{Binding IsCounting, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">Stop Counting</Button>
+            </Grid>
+        </GroupBox>
+    </StackPanel>
+
+
+
+
+
+
+
+
+
+</Controls:MetroWindow>

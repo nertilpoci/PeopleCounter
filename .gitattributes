@@ -1,1 +1,4 @@
 opencv_gpu249.dll filter=lfs diff=lfs merge=lfs -text
+x64/** filter=lfs diff=lfs merge=lfs -text
+FaceCounter/x64/** filter=lfs diff=lfs merge=lfs -text
+FaceCounter/x86/** filter=lfs diff=lfs merge=lfs -text
