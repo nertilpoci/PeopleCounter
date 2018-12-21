@@ -15,7 +15,7 @@ Entered poeple are saved temporarily until they leave so we have a way to track 
 1. New persons face detected.
 2. Check if person is already inside(counted on previous frame) if not add count and save person
 
-# Leave Camera
+# Exit Camera
 1. Person face detected.
 2. Check if person is inside, if so remove count, remove person from inside list. If person not found inside then do nothing
 
