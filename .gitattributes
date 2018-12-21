@@ -1,1 +1,2 @@
 FaceCounter/x86/** filter=lfs diff=lfs merge=lfs -text
+FaceCounter/x64/** filter=lfs diff=lfs merge=lfs -text
